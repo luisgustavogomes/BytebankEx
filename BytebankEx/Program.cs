@@ -12,41 +12,15 @@ namespace BytebankEx
         {
             try
             {
-                Metodo();
+                ContaCorrente conta = new ContaCorrente(0, 0);
             }
-            catch (NullReferenceException)
+            catch (Exception e)
             {
-                Console.WriteLine("Aconteceu um erro!");
+                Console.WriteLine("Exceção: " + e.ToString());
             }
-            finally
-            {
-                Console.ReadLine();
-            }
-        }
 
-        private static void Metodo()
-        {
-            TestaDivisao(0);
-        }
 
-        private static void TestaDivisao(int divisor)
-        {
-            try
-            {
-                int resultado = Dividir(10, divisor);
-                Console.WriteLine("Resultado da divisão de 10 por " + divisor + " é " + resultado);
-            }
-            catch (DivideByZeroException)
-            {
-                Console.WriteLine("Não é possível fazer a divisão!");
-            }
-        }
-
-        private static int Dividir(int numero, int divisor)
-        {
-            ContaCorrente conta = null;
-            Console.WriteLine(conta.Saldo);
-            return numero / divisor;
+            Console.ReadLine();
         }
 
         public static void Separador()
@@ -55,3 +29,48 @@ namespace BytebankEx
         }
     }
 }
+
+
+//    Alura
+//    try
+//    {
+//        Metodo();
+//    }
+//    catch (NullReferenceException e)
+//    {
+//        Console.WriteLine("\nErro: " + e.ToString());
+//    }
+//    catch (DivideByZeroException e)
+//    {
+//        Console.WriteLine("Não é possível fazer a divisão!" + "\nErro: " + e.ToString());
+//    }
+//    catch (Exception e)
+//    {
+//        Console.WriteLine("\nErro: " + e.ToString());
+//    }
+
+//    Console.ReadLine();
+//}
+
+//private static void Metodo()
+//{
+//    TestaDivisao(0);
+//}
+
+//private static void TestaDivisao(int divisor)
+//{
+//    int resultado = Dividir(10, divisor);
+//    Console.WriteLine("Resultado da divisão de 10 por " + divisor + " é " + resultado);
+//}
+
+//private static int Dividir(int numero, int divisor)
+//{
+//    try
+//    {
+//        return numero / divisor;
+//    }
+//    catch (DivideByZeroException)
+//    {
+//        throw;
+//    }
+//}
