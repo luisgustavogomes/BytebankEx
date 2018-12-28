@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace BytebankEx
 {
     public class ContaCorrente
-
     {
         public static int TotalDeContasCriadas { get; private set; }
-        
+        public static double TaxaOperacao { get; private set; }
+
         public Cliente Cliente { get; set; }
 
         private int _agencia;
@@ -55,6 +55,7 @@ namespace BytebankEx
         {
             Agencia = agencia;
             Numero = numero;
+            TaxaOperacao = 30 / TotalDeContasCriadas;
             TotalDeContasCriadas++;
         }
 
