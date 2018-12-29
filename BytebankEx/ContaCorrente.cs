@@ -38,10 +38,15 @@ namespace BytebankEx
 
         public ContaCorrente(int agencia, int numero)
         {
-            if (agencia <= 0 || numero <= 0 )
+            if (agencia <= 0  )
             {
-                throw new Exception("O número e a agencia devem ser maior que 0!");
+                throw new ArgumentException("Agencia devem ser maior que 0.", nameof(agencia));
             }
+            if (numero <= 0)
+            {
+                throw new ArgumentException("O número devem ser maior que 0.", nameof(numero));
+            }
+
             Agencia = agencia;
             Numero = numero;
             TaxaOperacao = 30 / TotalDeContasCriadas;

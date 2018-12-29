@@ -12,14 +12,21 @@ namespace BytebankEx
         {
             try
             {
-                ContaCorrente conta = new ContaCorrente(0, 0);
+                ContaCorrente conta = new ContaCorrente(234, 234567);
+                conta.Depositar(50);
+                Console.WriteLine(conta.Saldo);
+                conta.Sacar(500);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine("Exceção: " + e.ToString());
             }
             catch (Exception e)
             {
                 Console.WriteLine("Exceção: " + e.ToString());
             }
 
-
+            Console.WriteLine(ContaCorrente.TotalDeContasCriadas);
             Console.ReadLine();
         }
 
