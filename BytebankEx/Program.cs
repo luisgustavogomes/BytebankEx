@@ -1,22 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BytebankEx
 {
-    class Program
+    public class Program
     {
+
         public static void Main(string[] args)
+        {
+
+            CarregarContas();
+            Console.ReadLine();
+        }
+
+        private static void CarregarContas()
+        {
+            LeitorDeArquivo leitorDeArquivo = null;
+            try
+            {
+                leitorDeArquivo = new LeitorDeArquivo("contasl.txt");
+                leitorDeArquivo.LerProximaLinha();
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Exceção: " + e.ToString());
+            }
+            finally
+            {
+                if (leitorDeArquivo != null)
+                {
+                    leitorDeArquivo.Fechar();
+                }
+            }
+        }
+
+        private static void Separador()
+        {
+            Console.WriteLine("----------------------------------------------------------");
+        }
+
+        public static string FormatDouble(double valor)
+        {
+            return "R$ " + String.Format("{0:N}", valor);
+        }
+
+        private static void TestaInnerException()
         {
             try
             {
                 ContaCorrente conta = new ContaCorrente(234, 234567);
                 ContaCorrente contaDestino = new ContaCorrente(234, 234568);
 
-                conta.Depositar(50);
-                conta.Transferir(contaDestino, 500);
+                conta.Sacar(10000);
 
                 Separador();
                 Console.WriteLine(FormatDouble(conta.Saldo));
@@ -30,18 +69,12 @@ namespace BytebankEx
             {
                 Console.WriteLine("Exceção: " + e.ToString());
             }
-            Console.ReadLine();
+            catch (OperacaoFinanceiraException e)
+            {
+                Console.WriteLine("Exceção: " + e.ToString());
+            }
         }
 
-        public static void Separador()
-        {
-            Console.WriteLine("----------------------------------------------------------");
-        }
-
-        public static string FormatDouble(double valor)
-        {
-            return "R$ " + String.Format("{0:N}", valor);
-        }
     }
 }
 
