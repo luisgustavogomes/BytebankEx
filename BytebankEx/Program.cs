@@ -13,26 +13,34 @@ namespace BytebankEx
             try
             {
                 ContaCorrente conta = new ContaCorrente(234, 234567);
+                ContaCorrente contaDestino = new ContaCorrente(234, 234568);
+
                 conta.Depositar(50);
-                Console.WriteLine(conta.Saldo);
-                conta.Sacar(500);
+                conta.Transferir(contaDestino, 500);
+
+                Separador();
+                Console.WriteLine(FormatDouble(conta.Saldo));
+                Console.WriteLine(FormatDouble(contaDestino.Saldo));
+            }
+            catch (SaldoInsuficienteException e)
+            {
+                Console.WriteLine("Exceção: " + e.ToString());
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine("Exceção: " + e.ToString());
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exceção: " + e.ToString());
-            }
-
-            Console.WriteLine(ContaCorrente.TotalDeContasCriadas);
             Console.ReadLine();
         }
 
         public static void Separador()
         {
             Console.WriteLine("----------------------------------------------------------");
+        }
+
+        public static string FormatDouble(double valor)
+        {
+            return "R$ " + String.Format("{0:N}", valor);
         }
     }
 }
