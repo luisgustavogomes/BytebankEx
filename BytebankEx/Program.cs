@@ -13,29 +13,43 @@ namespace BytebankEx
         public static void Main(string[] args)
         {
 
-            CarregarContas();
+            try
+            {
+                CarregarContas();
+            }
+            catch (Exception e )
+            {
+                Console.WriteLine("Exceção: " + e.ToString());
+            }
             Console.ReadLine();
         }
 
         private static void CarregarContas()
         {
-            LeitorDeArquivo leitorDeArquivo = null;
-            try
+
+            using (LeitorDeArquivo leitor = new LeitorDeArquivo("teste.txt"))
             {
-                leitorDeArquivo = new LeitorDeArquivo("contasl.txt");
-                leitorDeArquivo.LerProximaLinha();
+                leitor.LerProximaLinha();
             }
-            catch (IOException e)
-            {
-                Console.WriteLine("Exceção: " + e.ToString());
-            }
-            finally
-            {
-                if (leitorDeArquivo != null)
-                {
-                    leitorDeArquivo.Fechar();
-                }
-            }
+
+            
+            //LeitorDeArquivo leitorDeArquivo = null;
+            //try
+            //{
+            //    leitorDeArquivo = new LeitorDeArquivo("contasl.txt");
+            //    leitorDeArquivo.LerProximaLinha();
+            //}
+            //catch (IOException e)
+            //{
+            //    Console.WriteLine("Exceção: " + e.ToString());
+            //}
+            //finally
+            //{
+            //    if (leitorDeArquivo != null)
+            //    {
+            //        leitorDeArquivo.Fechar();
+            //    }
+            //}
         }
 
         private static void Separador()
